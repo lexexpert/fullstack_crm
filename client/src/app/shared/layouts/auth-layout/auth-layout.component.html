@@ -1,0 +1,19 @@
+<nav>
+  <div class="nav-wrapper grey darken-1">
+    <a routerLink="/" class="brand-logo">CRM</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li routerLinkActive="active">
+        <a routerLink="/login">Login</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/register">Registration</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="auth-block">
+  <div class="card">
+    <router-outlet></router-outlet>
+  </div>
+</div>

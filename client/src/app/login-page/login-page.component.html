@@ -1,3 +1,38 @@
-<p>
-  login-page works!
-</p>
+<form
+  class="card-content"
+  [formGroup]="form"
+  (ngSubmit) = "onSubmit()"
+>
+  <span class="card-title">Login</span>
+  <div class="input-field">
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      [ngClass]="{'invalid': form.get('email').invalid && form.get('email').touched}"
+    >
+    <label for="email">Email:</label>
+    <span *ngIf="form.get('email').invalid && form.get('email').touched" class="helper-text red-text">
+      <span *ngIf="form.get('email').errors['required']">Email can't be empty</span>
+      <span *ngIf="form.get('email').errors['email']">Email is incorrect</span>
+    </span>
+  </div>
+  <div class="input-field">
+    <input
+      formControlName="password"
+      id="password"
+      type="password"
+      [ngClass]="{'invalid': form.get('password').invalid && form.get('password').touched}"
+    >
+    <label for="password">Password:</label>
+    <span *ngIf="form.get('password').invalid && form.get('password').touched" class="helper-text red-text">
+      <span *ngIf="form.get('password').errors['required']">Password can't be empty</span>
+      <span *ngIf="form.get('password').errors['minlength'] && form.get('password').errors['minlength']['requiredLength']">
+        The password should be longer than {{form.get('password').errors['minlength']['requiredLength']}} symbols
+      </span>
+    </span>
+  </div>
+</form>
+<div class="card-action">
+  <button [disabled]="form.invalid" type="submit" class="modal-action btn waves-effect">Login</button>
+</div>
