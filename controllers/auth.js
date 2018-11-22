@@ -34,10 +34,6 @@ module.exports.login = async function (req, res) {
         })
     }
 
-    // res.status(200).json({
-    //     email: req.body.email,
-    //     password: req.body.password
-    // })
 }
 
 module.exports.register = async function (req, res) {
@@ -68,6 +64,5 @@ module.exports.register = async function (req, res) {
             //handle error
         }
 
-        //user.save().then(() => console.log('User created'))
     }
 }
