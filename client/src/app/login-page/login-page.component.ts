@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AuthService} from "../shared/services/auth.service";
+import {MaterialService} from "../shared/classes/material.service";
 
 @Component({
   selector: 'app-login-page',
@@ -28,9 +29,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((params: Params)=>{
       if(params['registered']){
-        //Now you can login to the system using your data
+        MaterialService.toast('Now you can login to the system using your data')
       }else if(params['accessDenied']){
-        //You need to authorize first
+        MaterialService.toast('You need to authorize first')
       }
     })
   }
@@ -46,7 +47,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.aSub = this.auth.login(this.form.value).subscribe(
       () => this.router.navigate(['/overview']),
       error => {
-        console.warn(error)
+        MaterialService.toast(error.error.message)
         this.form.enable()
       }
     )
