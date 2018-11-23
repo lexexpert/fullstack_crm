@@ -32,7 +32,14 @@
       </span>
     </span>
   </div>
+  <div class="card-action">
+    <button
+      type="submit"
+      class="modal-action btn waves-effect"
+      [disabled]="form.invalid || form.disabled"
+    >
+      Login
+    </button>
+  </div>
 </form>
-<div class="card-action">
-  <button [disabled]="form.invalid" type="submit" class="modal-action btn waves-effect">Login</button>
-</div>
+
