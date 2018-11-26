@@ -1,3 +1,28 @@
-<p>
-  site-layout works!
-</p>
+<!--SIDEBAR-->
+<ul class="sidenav sidenav-fixed a-sidenav">
+  <h4>CRM</h4>
+  <li class="bold"
+      *ngFor="let link of links"
+      routerLinkActive="active"
+  >
+    <a [routerLink]="[link.url]" class="waves-effect waves-green">
+      {{link.name}}
+    </a>
+  </li>
+
+  <li class="bold last"><a href="#" (click)="logout($event)" class="waves-effect waves-green">Выйти</a></li>
+</ul>
+<!--CONTENT-->
+<main class="content">
+  <router-outlet></router-outlet>
+</main>
+<!--Floating button-->
+<div class="fixed-action-btn" #floating>
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">add</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating green"><i class="material-icons">assignment</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">list</i></a></li>
+  </ul>
+</div>
