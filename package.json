@@ -1,7 +1,7 @@
 {
-  "name": "fullstack_crm",
+  "name": "fullstack",
   "version": "1.0.0",
-  "description": "Fullstack CRM",
+  "description": "fullstack app with angular and express",
   "main": "index.js",
   "scripts": {
     "start": "node index",
@@ -10,6 +10,10 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+  "keywords": [
+    "express",
+    "angular"
+  ],
   "author": "Ivan Reshetar",
   "license": "ISC",
   "dependencies": {
@@ -18,16 +22,15 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
-    "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.22.2",
-    "mongoose": "^5.3.13",
+    "mongoose": "^5.3.14",
     "morgan": "^1.9.1",
     "multer": "^1.4.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0",
-    "nodemon": "^1.18.6"
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.18.7"
   }
 }

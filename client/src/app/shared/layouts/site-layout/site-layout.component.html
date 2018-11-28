@@ -1,22 +1,25 @@
-<!--SIDEBAR-->
 <ul class="sidenav sidenav-fixed a-sidenav">
-  <h4>CRM</h4>
-  <li class="bold"
-      *ngFor="let link of links"
-      routerLinkActive="active"
+  <h4>CRM System</h4>
+
+  <li
+    class="bold"
+    *ngFor="let link of links"
+    routerLinkActive="active"
   >
-    <a [routerLink]="[link.url]" class="waves-effect waves-green">
+    <a [routerLink]="[link.url]" class="waves-effect waves-orange">
       {{link.name}}
     </a>
   </li>
 
-  <li class="bold last"><a href="#" (click)="logout($event)" class="waves-effect waves-green">Выйти</a></li>
+  <li class="bold last">
+    <a href="#" class="waves-effect waves-orange" (click)="logout($event)">Logout</a>
+  </li>
 </ul>
-<!--CONTENT-->
+
 <main class="content">
   <router-outlet></router-outlet>
 </main>
-<!--Floating button-->
+
 <div class="fixed-action-btn" #floating>
   <a class="btn-floating btn-large red">
     <i class="large material-icons">add</i>
@@ -28,7 +31,7 @@
       </a>
     </li>
     <li>
-      <a class="btn-floating blue" routerLink="/items/new">
+      <a class="btn-floating blue" routerLink="/categories/new">
         <i class="material-icons">list</i>
       </a>
     </li>
