@@ -3,6 +3,7 @@
     <div class="page-subtitle">
       <h4>Positions:</h4>
       <button
+        type="button"
         class="waves-effect waves-light btn grey darken-1 btn-small"
         (click)="onAddPosition()"
       >
@@ -21,7 +22,7 @@
             {{position.name}} <strong>${{position.cost}}</strong>
         </span>
           <span>
-            <i class="material-icons">delete</i>
+            <i class="material-icons" (click)="onDeletePosition($event, position)">delete</i>
         </span>
         </a>
       </div>
@@ -36,20 +37,58 @@
 </div>
 
 
-<div class="modal" #modal>
-  <div class="modal-content">
-    <h4 class="mb1">Add position</h4>
-    <div class="input-field">
-      <input id="pos-name" type="text" required>
-      <label for="pos-name">Name</label>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="modal" #modal>
+    <div class="modal-content">
+      <h4 class="mb1">Add position</h4>
+      <div class="input-field">
+        <input
+          formControlName="name"
+          id="pos-name"
+          type="text"
+          [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}"
+        >
+        <label for="pos-name">Name</label>
+        <span
+          *ngIf="form.get('name').invalid && form.get('name').touched"
+          class="helper-text red-text"
+        >
+          Name is empty
+        </span>
+      </div>
+      <div class="input-field">
+        <input
+          formControlName="cost"
+          id="pos-cost"
+          type="number"
+          min="1"
+          [ngClass]="{'invalid': form.get('cost').invalid && form.get('cost').touched}"
+        >
+        <label for="pos-cost">Cost</label>
+        <span
+          *ngIf="form.get('cost').invalid && form.get('cost').touched"
+          class="helper-text red-text"
+        >
+          Cost is empty. Minimal value is 1
+        </span>
+      </div>
     </div>
-    <div class="input-field">
-      <input id="pos-cost" type="text" required>
-      <label for="pos-cost">Cost</label>
+    <div class="modal-footer">
+      <button
+        type="button"
+        (click)="onCancel()"
+        class="modal-action waves-effect waves-black btn-flat"
+        [disabled]="form.disabled"
+      >
+        Cancel
+      </button>
+      <button
+        class="modal-action btn waves-effect"
+        type="submit"
+        [disabled]="form.disabled || form.invalid"
+      >
+        Save
+      </button>
     </div>
   </div>
-  <div class="modal-footer">
-    <button (click)="onCancel()" class="modal-action waves-effect waves-black btn-flat">Cancel</button>
-    <button class="modal-action btn waves-effect">Save</button>
-  </div>
-</div>
+</form>
