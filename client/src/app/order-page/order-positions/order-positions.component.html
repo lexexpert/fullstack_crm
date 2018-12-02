@@ -1,3 +1,42 @@
-<p>
-  order-positions works!
-</p>
+<div *ngIf="positions$ | async as positions; else loader">
+  <table class="highlight" *ngIf="positions.length !== 0; else empty">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cost</th>
+      <th>Amount</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let position of positions">
+        <td>{{position.name}}</td>
+        <td>${{position.cost}}</td>
+        <td>
+          <div class="input-field inline order-position-input">
+            <input
+              type="number"
+              min="1"
+              [(ngModel)]="position.quantity"
+            >
+          </div>
+        </td>
+        <td>
+          <button
+            class="btn waves-effect wavers-light btn-small"
+            (click)="addToOrder(position)"
+            [disabled]="position.quantity<1"
+          >Add</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #empty>
+    <div class="center">This category doesn't have the positions</div>
+  </ng-template>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

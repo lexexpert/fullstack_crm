@@ -18,4 +18,6 @@ export class OrderCategoriesComponent implements OnInit {
     this.categories$ = this.categoriesService.fetch()
   }
 
+
+
 }

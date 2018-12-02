@@ -1,6 +1,16 @@
 <div class="page-title">
-  <h4>Order</h4>
-  <button class="waves-effect btn grey darken-1 modal-trigger" data-target="explore-order">
+  <h4 *ngIf="isRoot">Order</h4>
+  <h4 *ngIf="!isRoot">
+    <a routerLink="/order">Order</a>
+    <i class="material-icons">keyboard_arrow_right</i>
+    Add position
+  </h4>
+  <button
+    class="waves-effect btn grey darken-1"
+    data-target="explore-order"
+    (click)="open()"
+    [disabled]="order.list.length === 0"
+  >
     Finish
   </button>
 </div>
@@ -8,47 +18,41 @@
 <router-outlet></router-outlet>
 
 
-<div id="explore-order" class="modal modal-fixed-footer">
+<div #modal class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4 class="mb1">Ваш заказ</h4>
     <table class="highlight">
       <thead>
       <tr>
-        <th>Название</th>
-        <th>Количество</th>
-        <th>Цена</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
         <th></th>
       </tr>
       </thead>
 
       <tbody>
-      <tr>
-        <td>Alvin</td>
-        <td>3</td>
-        <td>$0.87</td>
-        <td><i class="material-icons pointer">delete</i></td>
-      </tr>
-      <tr>
-        <td>Alan</td>
-        <td>1</td>
-        <td>$3.76</td>
-        <td><i class="material-icons pointer">delete</i></td>
-
-      </tr>
-      <tr>
-        <td>Jonathan</td>
-        <td>2</td>
-        <td>$7.00</td>
-        <td><i class="material-icons pointer">delete</i></td>
-      </tr>
+        <tr *ngFor="let item of order.list">
+          <td>{{item.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>${{item.cost}}</td>
+          <td><i class="material-icons pointer" (click)="removePosition(item)">delete</i></td>
+        </tr>
       </tbody>
     </table>
     <div class="order-summary">
-      <p>Общая стоимость <strong>22 231 руб.</strong></p>
+      <p>Total cost: <strong>${{order.price}}</strong></p>
     </div>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action waves-effect waves-black btn-flat">Отмена</a>
-    <button class="modal-action btn waves-effect">Подтвердить</button>
+    <button
+      class="modal-action waves-effect waves-black btn-flat"
+      (click)="cancel()"
+    >Cancel</button>
+    <button
+      class="modal-action btn waves-effect"
+      (click)="submit()"
+      [disabled]="order.list.length === 0"
+    >Accept</button>
   </div>
 </div>
