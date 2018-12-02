@@ -48,11 +48,12 @@
     <button
       class="modal-action waves-effect waves-black btn-flat"
       (click)="cancel()"
+      [disabled]="pending"
     >Cancel</button>
     <button
       class="modal-action btn waves-effect"
       (click)="submit()"
-      [disabled]="order.list.length === 0"
+      [disabled]="order.list.length === 0 || pending"
     >Accept</button>
   </div>
 </div>
