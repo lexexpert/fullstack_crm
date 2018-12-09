@@ -40,12 +40,13 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
       offset: this.offset,
       limit: this.limit
     })
-    this.oSub = this.ordersService.fetch(params).subscribe(orders => {
-      this.orders = this.orders.concat(orders)
-      this.noMoreOrders = orders.length < STEP
+    this.oSub = this.ordersService.fetch(params).subscribe(new_orders => {
+      this.orders = this.orders.concat(new_orders)
+      this.noMoreOrders = this.orders.length <= this.offset
       this.loading = false
       this.reloading = false
     })
+
   }
 
   loadMore() {
@@ -71,7 +72,7 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
     this.fetch()
   }
 
-  isFiltered(): boolean{
+  isFiltered(): boolean {
     return Object.keys(this.filter).length !== 0
   }
 

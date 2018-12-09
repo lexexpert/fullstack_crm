@@ -24,22 +24,34 @@ export interface Position {
 }
 
 export interface Order {
-  date?: Date,
-  order?: number,
-  user?: string,
-  list: OrderPosition[],
+  date?: Date
+  order?: number
+  user?: string
+  list: OrderPosition[]
   _id?: string
 }
 
 export interface OrderPosition {
-  name: string,
-  cost: number,
-  quantity: number,
+  name: string
+  cost: number
+  quantity: number
   _id?: string
 }
 
 export interface Filter {
-  start?: Date,
-  end?: Date,
+  start?: Date
+  end?: Date
   order?: number
+}
+
+export interface OverviewPage {
+  gain: OverviewPageItem
+  orders: OverviewPageItem
+}
+
+export interface OverviewPageItem {
+  percent: number
+  compare: number
+  yesterday: number
+  isHigher: boolean
 }
