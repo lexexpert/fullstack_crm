@@ -1,3 +1,5 @@
+import {initChangeDetectorIfExisting} from "@angular/core/src/render3/instructions";
+
 export interface User {
   email: string
   password: string
@@ -54,4 +56,15 @@ export interface OverviewPageItem {
   compare: number
   yesterday: number
   isHigher: boolean
+}
+
+export interface AnalyticsPage {
+  average: number
+  chart: AnalyticsChartItem
+}
+
+export interface AnalyticsChartItem {
+  gain: number
+  order: number
+  label: string
 }
