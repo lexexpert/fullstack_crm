@@ -17,7 +17,7 @@ export class CategoriesFormComponent implements OnInit {
   @ViewChild('input') inputRef: ElementRef
   form: FormGroup
   image: File
-  imagePreview = ''
+  imagePreview: string | ArrayBuffer = ''
   isNew = true
   category: Category
 
@@ -87,7 +87,7 @@ export class CategoriesFormComponent implements OnInit {
     const reader = new FileReader()
 
     reader.onload = () => {
-      this.imagePreview = reader.result
+      return this.imagePreview = reader.result
     }
 
     reader.readAsDataURL(file)

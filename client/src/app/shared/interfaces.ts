@@ -1,4 +1,4 @@
-import {initChangeDetectorIfExisting} from "@angular/core/src/render3/instructions";
+// import {initChangeDetectorIfExisting} from "@angular/core/src/render3/instructions";
 
 export interface User {
   email: string
@@ -67,4 +67,6 @@ export interface AnalyticsChartItem {
   gain: number
   order: number
   label: string
+
+  map(param: (item) => any): any;
 }

@@ -1,0 +1,60 @@
+<table class="highlight mb2">
+  <thead>
+  <tr>
+    <th>№</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Amount</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let order of orders">
+    <td>{{order.order}}</td>
+    <td>{{order.date | date:'dd.MM.yyyy'}}</td>
+    <td>{{order.date | date:'HH:mm:ss'}}</td>
+    <td>${{computePrice(order)}}</td>
+    <td>
+      <button class="btn btn-small grey darken-1" (click)="selectOrder(order)">
+        <i class="material-icons">open_in_new</i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<div class="modal modal-fixed-footer" #modal>
+  <div class="modal-content" *ngIf="selectedOrder">
+    <h4 class="mb1">Order №{{selectedOrder.order}}</h4>
+    <table class="highlight">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let item of selectedOrder.list">
+        <td>{{item.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.cost}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="order-summary">
+      <p>Total cost: <strong>${{computePrice(selectedOrder)}}</strong></p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      class="modal-action waves-effect waves-black btn-flat"
+      (click)="closeModal()"
+    >
+      Close
+    </button>
+  </div>
+</div>
